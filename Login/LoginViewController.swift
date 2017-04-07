@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     // Constants used in the LoginViewController
     struct Constants {
         static let backgroundColor: UIColor = UIColor(hue: 0.5389, saturation: 1, brightness: 0.92, alpha: 1.0)
+        static let buttonColor: UIColor = UIColor(hue: 0.7, saturation: 1, brightness: 0.95, alpha: 1.0)
         static let invalidEmailTitle = "Invalid username or password"
         static let invalidEmailMessage = "Please try again"
         //static
@@ -64,19 +65,25 @@ class LoginViewController: UIViewController {
         //loginWindow.frame = CGRect(x: 0, y: 0, width: (screenWidth * 0.9), height: 100)
         //loginWindow.center = view.center
         
-        //loginWindow.addSubview(loginButton)
-        //loginWindow.addSubview(userText)
+        loginWindow.addSubview(loginButton)
+        loginWindow.addSubview(userText)
         loginWindow.addSubview(passText)
         
         loginButton.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginButton.centerYAnchor.constraint(equalTo: passText.centerYAnchor, constant: 50.0).isActive = true
+        loginButton.backgroundColor = Constants.buttonColor
+        loginButton.setTitle("Log in!", for: .normal)
+        loginButton.addTarget(self, action: #selector(authenticate), for: .touchDown)
         loginButton.translatesAutoresizingMaskIntoConstraints = false
         
         userText.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
         userText.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        userText.centerXAnchor.constraint(equalTo: passText.centerXAnchor).isActive = true
+        userText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         userText.centerYAnchor.constraint(equalTo: passText.centerYAnchor, constant: -50.0).isActive = true
-        passText.borderStyle = UITextBorderStyle.roundedRect
+        userText.borderStyle = UITextBorderStyle.roundedRect
+        userText.placeholder = "Enter user name here"
         userText.translatesAutoresizingMaskIntoConstraints = false
         
         passText.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
@@ -84,6 +91,7 @@ class LoginViewController: UIViewController {
         passText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         passText.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         passText.borderStyle = UITextBorderStyle.roundedRect
+        passText.placeholder = "Enter password here"
         passText.translatesAutoresizingMaskIntoConstraints = false
         
         
@@ -93,7 +101,11 @@ class LoginViewController: UIViewController {
     // TODO: create an IBAction for your login button
     
     
-    
+    @IBAction func authenticate(sender: UIButton) {
+        //let mainView = MainViewController()
+        //self.present(mainView, animated: true, completion: nil)
+        authenticateUser(username: userText.text, password: passText.text)
+    }
     
     
     /// YOU DO NOT NEED TO MODIFY ANY OF THE CODE BELOW (but you will want to use `authenticateUser` at some point)
