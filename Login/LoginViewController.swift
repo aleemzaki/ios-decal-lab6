@@ -15,15 +15,77 @@ class LoginViewController: UIViewController {
         static let backgroundColor: UIColor = UIColor(hue: 0.5389, saturation: 1, brightness: 0.92, alpha: 1.0)
         static let invalidEmailTitle = "Invalid username or password"
         static let invalidEmailMessage = "Please try again"
+        //static
     }
 
     // TODO: instantiate the views needed for your project
+    let bigTitle = UILabel(frame: CGRect(x: 50, y: 100, width: 200, height: 100))
+    let loginButton = UIButton()//frame: CGRect(x: 50, y: 200, width: Int(screenWidth), height: 50))
+    //let userframe = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 30.0)
+    let userText = UITextField()//frame: CGRect(x: 50, y: 300, width: screenWidth, height: 50))
+    let passText = UITextField()//frame: CGRect(x: 50, y: 250, width: screenWidth, height: 50))
+    //let passText = UITextfield()
+     
+    
+    
+    let loginWindow = UIView()//(frame: CGRect(x: 50, y: 300, width: 200, height: 150))//(frame: CGRect(x: 50, y: 200, width: Int(screenWidth * 0.9), height: 100))
+        
+    //}
+    
+    let screenWidth = 0.9 * UIScreen.main.bounds.size.width
+    let buffer = 0.05 * UIScreen.main.bounds.size.width
+    let screencenterx = UIScreen.main.bounds.midX
+    let screencentery = UIScreen.main.bounds.midY
+    // returns the center y coordinate of the user's screen (CGFloat)
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundColor
         
         // TODO: Add your views either as subviews of `view` or subviews of each other using `addSubview`
+        
+        view.addSubview(bigTitle)
+        view.addSubview(loginWindow)
+        
+        bigTitle.text = "Login View Controller"
+        bigTitle.textColor = UIColor.white
+        
+        loginWindow.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
+        loginWindow.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        loginWindow.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        loginWindow.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        loginWindow.translatesAutoresizingMaskIntoConstraints = false
+        loginWindow.backgroundColor = UIColor.white
+        
+        //loginWindow.wi
+        
+        
+        //loginWindow.frame = CGRect(x: 0, y: 0, width: (screenWidth * 0.9), height: 100)
+        //loginWindow.center = view.center
+        
+        //loginWindow.addSubview(loginButton)
+        //loginWindow.addSubview(userText)
+        loginWindow.addSubview(passText)
+        
+        loginButton.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
+        loginButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        userText.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
+        userText.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        userText.centerXAnchor.constraint(equalTo: passText.centerXAnchor).isActive = true
+        userText.centerYAnchor.constraint(equalTo: passText.centerYAnchor, constant: -50.0).isActive = true
+        passText.borderStyle = UITextBorderStyle.roundedRect
+        userText.translatesAutoresizingMaskIntoConstraints = false
+        
+        passText.widthAnchor.constraint(equalToConstant: screenWidth).isActive = true
+        passText.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        passText.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        passText.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        passText.borderStyle = UITextBorderStyle.roundedRect
+        passText.translatesAutoresizingMaskIntoConstraints = false
+        
         
         // TODO: layout your views using frames or AutoLayout
     }
